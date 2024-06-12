@@ -1,0 +1,57 @@
+﻿@model EmployeeInformation.Models.Employee
+
+<h1>Verify</h1>
+
+<div>
+	@using (Html.BeginForm("VerifyOTP", "Employee", FormMethod.Post, new { id = "UserForm", name = "UserForm", @class = "form-horizontal", role = "form" }))
+	{
+		<div class="form-group">
+			<label for="VerifyOTP">Enter OTP</label>
+			@Html.TextBoxFor(a => a.VerifyOTP, new { @class = "form-control", style = "width:150px" })
+			@Html.ValidationMessageFor(a => a.VerifyOTP, "", new { @class = "text-danger" })
+		</div>
+
+
+		<div class="form-group">
+			<button type="submit" class="btn btn-primary">Verify</button>
+		</div>
+	}
+
+	@using (Html.BeginForm("ResendOTP", "Employee", FormMethod.Post))
+	{
+		<div class="form-group">
+			<button type="submit" class="btn btn-primary"> Resend OTP </button>
+		</div>
+	}
+
+
+</div>
+@section Scripts {
+	<script type="text/javascript">
+		function preventBack() { window.history.forward(); }
+		setTimeout("preventBack()", 0);
+		window.onunload = function () { null };
+	</script>
+
+	@if (ViewBag.Message != null)
+	{
+		<script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+		</script>
+	}
+
+	
+	@*<script type="text/javascript">
+			@if (!ViewData.ModelState.IsValid && ViewData.ModelState["Error"].Errors.Count > 0)
+			{
+				<text>
+				$(document).ready(function() {
+					alert('@ViewData.ModelState["Error"].Errors.First().ErrorMessage');
+					Console.log("HERE");
+				});
+				</text>
+			}
+		</script>*@
+} 

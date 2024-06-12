@@ -1,0 +1,41 @@
+﻿@model EmployeeInformation.Models.Employee
+
+<div>
+	<h3>Login</h3>
+	<br />
+	@using (Html.BeginForm("LoginController", "Employee", FormMethod.Post))
+	{
+	<div class="form-group">
+		<label for="Id">User ID</label>
+		@Html.TextBoxFor(a => a.Id, new { @class = "form-control", style = "width:300px" })
+	</div>
+	<div class="form-group">
+		@Html.LabelFor(a => a.Password)
+		@Html.PasswordFor(a => a.Password, new { @class = "form-control", @type = "password", style = "width:300px" })
+	</div>
+
+	<div class="form-group">
+		<button type="submit" class="btn btn-success btn-md">Login</button>
+	</div>
+	}
+
+</div>
+
+@section Scripts
+{
+	<script type="text/javascript">
+			window.onload = function () {
+				console.log("@ViewBag.IpList");
+				console.log("@ViewBag.CurrentIp");
+				console.log("@ViewBag.Msg");
+			};
+	</script>
+	@if (ViewBag.ErrorMsg != null)
+	{
+	<script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.ErrorMsg");
+            };
+	</script>
+	}
+}

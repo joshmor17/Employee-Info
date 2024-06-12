@@ -1,0 +1,55 @@
+﻿@model EmployeeInformation.EmployeeIndexViewModel
+@using Microsoft.AspNetCore.Http;
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div>
+	@*Welcome @Context.Session.GetString("ID")*@
+	<br>
+	@*<a asp-controller="account" asp-action="logout">Logout</a>*@
+	<a class="btn btn-primary" asp-controller="Employee" asp-action="Create">Add New</a>
+	<hr />
+	<br />
+
+	<div class="table-responsive">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>Employee ID</th>
+					<th>First Name</th>
+					<th>Middle Name</th>
+					<th>Last Name</th>
+					<th>Email</th>
+					<th>Age</th>
+					<th>Birthdate</th>
+					<th>Birthplace</th>
+					<th>ContactNo</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model.Employees)
+				{
+				<tr>
+					<td>@item.Id</td>
+					<td>@item.Firstname</td>
+					<td>@item.Middlename</td>
+					<td>@item.Lastname</td>
+					<td>@item.Email</td>
+					<td>@item.Age</td>
+					<td>@item.Birthdate.ToLongDateString()</td>
+					<td>@item.Birthplace</td>
+					<td>@item.ContactNo</td>
+					<td><button class="btn" id="btnDelete" name="model.CommandType" value="Delete"><i class="fa fa-trash"></i></button></td>
+				</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+
+</div>
+
+<script src="~/js/site.js"></script>
+
